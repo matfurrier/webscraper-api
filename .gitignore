@@ -9,6 +9,7 @@ __pycache__/
 # Distribution / packaging
 .Python
 build/
+develop-eggs/
 dist/
 downloads/
 eggs/
@@ -19,6 +20,7 @@ parts/
 sdist/
 var/
 wheels/
+pip-wheel-metadata/
 share/python-wheels/
 *.egg-info/
 .installed.cfg
@@ -26,8 +28,8 @@ share/python-wheels/
 MANIFEST
 
 # PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+#  Usually these files are written by a CI server
+#  and pushed to SCM users.
 *.manifest
 *.spec
 
@@ -42,19 +44,16 @@ htmlcov/
 .coverage
 .coverage.*
 .cache
-.pytest_cache/
 nosetests.xml
 coverage.xml
 *.cover
 *.py,cover
 .hypothesis/
-.dmypy.json
-dmypy.json
+.pytest_cache/
 
 # Translations
 *.mo
 *.pot
-*.log
 
 # Django stuff:
 *.log
@@ -86,27 +85,12 @@ ipython_config.py
 .python-version
 
 # pipenv
-#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
+#   According to Pipenv General Recommendation to Check-In Pipfile.lock
 #   However, in case of collaboration, if having platform-specific dependencies or dependencies
-#   having no cross-platform support, pipenv may install dependencies that don't work, or not
-#   install all needed dependencies.
-#Pipfile.lock
+#   having other issues, uncomment the following line:
+# Pipfile.lock
 
-# poetry
-#   Similar to Pipfile.lock, it is generally recommended to include poetry.lock in version control.
-#   This is especially recommended for binary packages to ensure reproducibility, and is more
-#   commonly used than Pipfile.lock.
-#   However, in case of collaboration, if having platform-specific dependencies or dependencies
-#   having no cross-platform support, poetry may install dependencies that don't work, or not
-#   install all needed dependencies.
-#   poetry.lock
-
-# pdm
-#   Similar to Pipfile.lock, it is generally recommended to include pdm.lock in version control.
-#pdm.lock
-#.pdm.toml
-
-# PEP 582; used by pdm
+# PEP 582; used by PDM, Poetry and Flit
 __pypackages__/
 
 # Celery stuff
@@ -143,29 +127,18 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# pytype static analyzer
-.pytype/
+# VSCode
+.vscode/
 
-# Cython debug symbols
-cython_debug/
+# Docker
+docker-compose.override.yml
 
-# VS Code
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-*.code-workspace
+# dotenv
+.env
+*.env
 
-# Ruff
-.ruff_cache/
-
-# Pyright
-.pyright_cache/
-
-# Operating System Files
+# macOS
 .DS_Store
-Thumbs.db
 
 # Mongo Data (if run locally outside docker volume)
 mongo_data/ 
