@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+pymongo
+apscheduler
+pandas
+requests
+beautifulsoup4
+python-dotenv
+gunicorn
+playwright
+jinja2 

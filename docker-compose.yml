@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/app/app  # Mount app directory for development; remove for production image stability
+      # - ./.env:/app/.env # Mount .env file, or use environment section below
+    environment:
+      # These will override .env file if both are present and loaded by python-dotenv
+      # For production, it's often better to set these directly here or via orchestration secrets
+      - SCRAPE_INTERVAL_HOURS=${SCRAPE_INTERVAL_HOURS:-12}
+      - TARGET_URL=${TARGET_URL:-https://www.cepea.esalq.usp.br/br/indicador/soja.aspx}
+      - MONGO_URI=${MONGO_URI:-mongodb://mongodb:27017/}
+      - MONGO_DB_NAME=${MONGO_DB_NAME:-scraper_db}
+      - PORT=${PORT:-8000}
+    depends_on:
+      - mongodb
+    networks:
+      - scrapernet
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=${MONGO_DB_NAME:-scraper_db} # Optional: creates DB on init
+    networks:
+      - scrapernet
+
+volumes:
+  mongo_data:
+
+networks:
+  scrapernet:
+    driver: bridge 
